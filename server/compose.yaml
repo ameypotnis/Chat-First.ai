@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: wikijs
+      POSTGRES_USER: wikijsuser
+      POSTGRES_PASSWORD: s3cUr3P@ssw0rd!
+    ports:
+      - "11479:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - wikinet
+
+  wikijs:
+    image: requarks/wiki:2.5
+    depends_on:
+      - postgres
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: wikijsuser
+      DB_PASS: s3cUr3P@ssw0rd!
+      DB_NAME: wikijs
+    ports:
+      - "11478:3000"
+    networks:
+      - wikinet
+    volumes:
+      - wikijs-data:/var/lib/wiki
+
+volumes:
+  postgres-data:
+  wikijs-data:
+
+networks:
+  wikinet:
+    driver: bridge
+
