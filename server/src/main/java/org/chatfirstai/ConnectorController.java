@@ -164,13 +164,13 @@ public class ConnectorController {
 
   private List<Map<String, Object>> performSimilaritySearch(String model, float[] embed) {
     if ("local".equalsIgnoreCase(model)) {
-      List<Map<String, Object>> maps = pageEmbeddingRepository.localSimilaritySearch(embed, 70, 1);
+      List<Map<String, Object>> maps = pageEmbeddingRepository.localSimilaritySearch(embed, 50, 1);
       if (!CollectionUtils.isEmpty(maps)) {
         log.info("Found {} pages using local model", maps.getFirst().get("score"));
       }
       return maps;
     } else if ("online".equalsIgnoreCase(model)) {
-      return pageEmbeddingRepository.mistralSimilaritySearch(embed, 70, 2);
+      return pageEmbeddingRepository.mistralSimilaritySearch(embed, 50, 1);
     } else {
       return List.of();
     }
@@ -186,7 +186,8 @@ Instructions for responses:
 2. Provide accurate, concise answers focused on document content
 3. Format responses in HTML using appropriate tags (<p>, <ul>, <b> etc.)
 4. Only make statements that are directly supported by the documents
-5. If information is incomplete or unclear, respond with exactly: "I don\\'t know the answer"
+5. Answer should not be more than one paragraph
+6. If information is incomplete or unclear, respond with exactly: "I don\\'t know the answer, please ask again with more details"
 
 The relevant document excerpt follows:
 """);
@@ -198,16 +199,16 @@ The relevant document excerpt follows:
   public AIServiceStatus getEnv() {
     String openAiKey =
         "XXXXX"
-            + environment
-                .getProperty("spring.ai.openai.api-key")
+            + Objects.requireNonNull(environment
+                        .getProperty("spring.ai.openai.api-key"))
                 .substring(
                     Objects.requireNonNull(environment.getProperty("spring.ai.openai.api-key"))
                             .length()
                         - 5);
     String mistralKey =
         "XXXXX"
-            + environment
-                .getProperty("spring.ai.mistralai.api-key")
+            + Objects.requireNonNull(environment
+                        .getProperty("spring.ai.mistralai.api-key"))
                 .substring(
                     Objects.requireNonNull(environment.getProperty("spring.ai.mistralai.api-key"))
                             .length()
@@ -237,9 +238,11 @@ The relevant document excerpt follows:
         isOnlineAiEnabled() ? "online" : "local",
         healthEndpoint,
         isOnlineAiEnabled() ? mistralKey : openAiKey,
-        environment.getProperty("wiki.url"));
+        environment.getProperty("wiki.url"),
+        environment.getProperty("wiki.name")
+    );
   }
 
   public record AIServiceStatus(
-      String timestamp, String status, String type, String url, String key, String wiki) {}
+      String timestamp, String status, String type, String url, String key, String wiki, String name) {}
 }

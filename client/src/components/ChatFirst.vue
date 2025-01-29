@@ -5,7 +5,7 @@
       max-width="800"
     >
       <div class="text-center mb-6">
-        <h1 class="text-h4 font-weight-medium">Chat-First.ai</h1>
+        <h1 class="text-h4 font-weight-medium">{{modelHealth.name || ''}}&nbsp;Chat-First.ai</h1>
         <p class="text-subtitle-1 text-grey-darken-1 font-weight-regular mt-2">
           <span class="">I ❤️ questions.</span>
         </p>
@@ -192,6 +192,7 @@ interface Message {
 }
 
 interface Health {
+  name: string
   timestamp: string
   key: string
   status: string
@@ -261,7 +262,7 @@ const sendMessage = () => {
     } else {
       messages.value.push({
         sender: 'bot',
-        text: data.message
+        text: data.message.replace(/<think>[\s\S]*?<\/think>/g, '').replace("\n\n", "")
       })
     }
     setTimeout(() => {

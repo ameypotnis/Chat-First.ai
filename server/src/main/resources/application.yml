@@ -43,6 +43,7 @@ server:
 
 wiki:
   url: ${WIKI_URL:localhost}
+  name: ${COMPANY_NAME:}
 
 online:
   enabled: ${ONLINE_ACCESS:false}

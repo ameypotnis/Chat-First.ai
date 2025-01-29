@@ -2,80 +2,52 @@ package org.chatfirstai;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.commonmark.node.Heading;
-import org.commonmark.node.Node;
-import org.commonmark.node.Paragraph;
-import org.commonmark.node.Text;
+import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
+import org.commonmark.renderer.text.TextContentRenderer;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MarkdownParser {
-  // Method to extract sections from the AST
-  public List<String> extractSections(String document) {
-    // Parse the Markdown string
+  public List<String> extractSections(String markdown) {
     Parser parser = Parser.builder().build();
-    Node node = parser.parse(document);
+    Node document = parser.parse(markdown);
 
-    List<String> sections = new ArrayList<>();
-    StringBuilder currentSection = new StringBuilder();
-    StringBuilder currentTitle = new StringBuilder();
+    SectionVisitor visitor = new SectionVisitor();
+    document.accept(visitor);
 
-    // Traverse through the document node tree
-    Node currentNode = node.getFirstChild();
-    while (currentNode != null) {
-      if (currentNode instanceof Heading) {
-        // Heading marks the start of a new section
-        if (!currentSection.isEmpty()) {
-          sections.add(currentTitle + "\n" + currentSection);
-        }
-        // Reset for the new section
-        currentTitle.setLength(0);
-        currentSection.setLength(0);
-        // Get the content of the Heading
-        currentTitle.append(getTextContent(currentNode));
-      } else if (currentNode instanceof Paragraph || currentNode instanceof Text) {
-        // Append text content to the current section
-        currentSection.append(getTextContent(currentNode)).append("\n");
-      }
-
-      // Move to the next node
-      currentNode = currentNode.getNext();
-    }
-
-    // Add the last section if available
-    if (!currentSection.isEmpty()) {
-      sections.add(currentTitle + "\n" + currentSection);
-    }
-
-    return sections;
+    return visitor.getSections();
   }
 
-  // Helper method to extract text content from a node
-  private String getTextContent(Node node) {
-    if (node instanceof Text) {
-      return ((Text) node).getLiteral();
-    } else if (node instanceof Heading) {
-      StringBuilder headingText = new StringBuilder();
-      Node headingChild = node.getFirstChild();
-      while (headingChild != null) {
-        if (headingChild instanceof Text) {
-          headingText.append(((Text) headingChild).getLiteral());
+  static class SectionVisitor extends AbstractVisitor {
+
+    private final List<String> sections = new ArrayList<>();
+    private final TextContentRenderer renderer = TextContentRenderer.builder().build();
+    private boolean insideSection = false;
+    private final StringBuilder currentSection = new StringBuilder();
+
+    @Override
+    public void visit(Heading heading) {
+      if (heading.getLevel() == 3) {
+        if (insideSection) {
+          sections.add(currentSection.toString().trim());
+          currentSection.setLength(0);
         }
-        headingChild = headingChild.getNext();
+        insideSection = true;
       }
-      return headingText.toString();
-    } else if (node instanceof Paragraph) {
-      StringBuilder paragraphText = new StringBuilder();
-      Node paragraphChild = node.getFirstChild();
-      while (paragraphChild != null) {
-        if (paragraphChild instanceof Text) {
-          paragraphText.append(((Text) paragraphChild).getLiteral());
-        }
-        paragraphChild = paragraphChild.getNext();
-      }
-      return paragraphText.toString();
+      currentSection.append(renderer.render(heading));
     }
-    return "";
+
+    @Override
+    public void visit(BulletList bulletList) {
+      currentSection.append(renderer.render(bulletList));
+    }
+
+    public List<String> getSections() {
+      if (insideSection && !currentSection.isEmpty()) {
+        sections.add(currentSection.toString().trim());
+      }
+      return sections;
+    }
   }
 }
