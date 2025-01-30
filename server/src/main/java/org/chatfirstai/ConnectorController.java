@@ -139,11 +139,11 @@ public class ConnectorController {
     if (model.equalsIgnoreCase("local")) {
       ChatClient.CallResponseSpec response =
           openaiChatClient.prompt().system(generateSystemPrompt(maps)).user(question).call();
-      return ResponseEntity.ok(Map.of("message", Objects.requireNonNull(response.content())));
+      return ResponseEntity.ok(Map.of("message", Objects.requireNonNull(response.content()), "reference", "" + maps.getFirst().get("path")));
     } else if (model.equalsIgnoreCase("online")) {
       ChatClient.CallResponseSpec response =
           mistralChatClient.prompt().system(generateSystemPrompt(maps)).user(question).call();
-      return ResponseEntity.ok(Map.of("message", Objects.requireNonNull(response.content())));
+      return ResponseEntity.ok(Map.of("message", Objects.requireNonNull(response.content()), "reference", "" + maps.getFirst().get("path")));
     } else {
       return ResponseEntity.badRequest().body(Map.of("message", "Invalid model"));
     }

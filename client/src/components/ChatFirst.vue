@@ -5,7 +5,7 @@
       max-width="800"
     >
       <div class="text-center mb-6">
-        <h1 class="text-h4 font-weight-medium">{{modelHealth.name || ''}}&nbsp;Chat-First.ai</h1>
+        <h1 class="text-h4 font-weight-medium">{{modelHealth.name || ''}}&nbsp;chat-first.ai</h1>
         <p class="text-subtitle-1 text-grey-darken-1 font-weight-regular mt-2">
           <span class="">I ❤️ questions.</span>
         </p>
@@ -110,6 +110,11 @@
                   </span>
                   <span class="text-body-1 text-pre-wrap" v-html="message.text"></span>
                 </v-list-item-title>
+                <v-list-item-subtitle v-if="message.reference">
+                  <a :href="selectedWiki + '/en/' + message.reference" target="_blank" class="text-primary">
+                    Wiki reference page
+                  </a>
+                </v-list-item-subtitle>
               </v-list-item>
           </v-list>
           <div v-if="isLoading" class="d-flex justify-center align-center mt-4">
@@ -165,7 +170,7 @@
       transition="dialog-bottom-transition"
     >
       <v-card class="d-flex flex-column align-center justify-center" style="min-height: 100vh; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-        <h1 class="text-h2 font-weight-bold mb-6" style="color: #1a237e;">Chat-First.ai</h1>
+        <h1 class="text-h2 font-weight-bold mb-6" style="color: #1a237e;">chat-first.ai</h1>
         <p class="text-h4 mb-4" style="color: #303f9f;">I ❤️ questions.</p>
         <p class="text-h5 mb-8" style="color: #3949ab;">It's open-source and free to use.</p>
         <p class="mb-8" style="color: #3949ab;">Take a selfie with me and share it on instagram.</p>
@@ -189,6 +194,7 @@ import { ref, onMounted } from 'vue'
 interface Message {
   sender: 'user' | 'bot'
   text: string
+  reference?: string
 }
 
 interface Health {
@@ -262,7 +268,8 @@ const sendMessage = () => {
     } else {
       messages.value.push({
         sender: 'bot',
-        text: data.message.replace(/<think>[\s\S]*?<\/think>/g, '').replace("\n\n", "")
+        text: data.message.replace(/<think>[\s\S]*?<\/think>/g, '').replace("\n\n", ""),
+        reference: data.reference
       })
     }
     setTimeout(() => {

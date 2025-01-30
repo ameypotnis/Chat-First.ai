@@ -14,9 +14,9 @@ public interface PageEmbeddingRepository extends JpaRepository<PageEmbedding, In
 
   @Query(
       value =
-          "SELECT id as id, content as content, ((1 - (local_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) as score FROM page_embeddings "
-              + "WHERE ((1 - (local_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) >= :threshold "
-              + "ORDER BY local_embeddings <=> CAST(:queryEmbedding AS vector) "
+          "SELECT pe.id as id, pe.content as content, ((1 - (pe.local_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) as score, p.path as path FROM page_embeddings pe join public.pages p on pe.page_id=p.id "
+              + "WHERE ((1 - (pe.local_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) >= :threshold "
+              + "ORDER BY pe.local_embeddings <=> CAST(:queryEmbedding AS vector) "
               + "LIMIT :limit",
       nativeQuery = true)
   List<Map<String, Object>> localSimilaritySearch(
@@ -26,9 +26,9 @@ public interface PageEmbeddingRepository extends JpaRepository<PageEmbedding, In
 
   @Query(
       value =
-          "SELECT id as id, content as content, ((1 - (mistral_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) as score FROM page_embeddings "
-              + "WHERE ((1 - (mistral_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) >= :threshold "
-              + "ORDER BY mistral_embeddings <=> CAST(:queryEmbedding AS vector) "
+          "SELECT pe.id as id, pe.content as content, ((1 - (pe.mistral_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) as score, p.path as path FROM page_embeddings pe join public.pages p on pe.page_id=p.id "
+              + "WHERE ((1 - (pe.mistral_embeddings <=> CAST(:queryEmbedding AS vector))) * 100) >= :threshold "
+              + "ORDER BY pe.mistral_embeddings <=> CAST(:queryEmbedding AS vector) "
               + "LIMIT :limit",
       nativeQuery = true)
   List<Map<String, Object>> mistralSimilaritySearch(

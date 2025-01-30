@@ -1,5 +1,6 @@
 # chat-first.ai
-##### open source wiki based chatbot, I ❤️ questions.
+##### Open source wiki based chatbot 
+##### I ❤️ questions.
 
 # Index
 1. [Overview](#overview)

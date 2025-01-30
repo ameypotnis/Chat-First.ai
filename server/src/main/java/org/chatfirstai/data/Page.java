@@ -12,6 +12,8 @@ public class Page {
   @Column(name = "id", nullable = false)
   private Integer id;
 
+  private String path;
+
   private String title;
 
   @Column(name = "content", length = Integer.MAX_VALUE)
