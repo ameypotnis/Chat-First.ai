@@ -4,50 +4,112 @@ import java.util.ArrayList;
 import java.util.List;
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
-import org.commonmark.renderer.text.TextContentRenderer;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MarkdownParser {
-  public List<String> extractSections(String markdown) {
+
+  public List<String> extractSections(String markdownContent) {
+    List<String> sections = new ArrayList<>();
+
+    // Initialize the CommonMark parser
     Parser parser = Parser.builder().build();
-    Node document = parser.parse(markdown);
+    Node document = parser.parse(markdownContent);
 
-    SectionVisitor visitor = new SectionVisitor();
-    document.accept(visitor);
+    // Custom visitor to walk through the document and extract level 3 headings and their following content
+    document.accept(new AbstractVisitor() {
+      private boolean inHeadingSection = false;
+      private final StringBuilder sectionContent = new StringBuilder();
 
-    return visitor.getSections();
-  }
+      @Override
+      public void visit(Heading heading) {
+        if (heading.getLevel() == 3) {
+          if (inHeadingSection) {
+            // If we're already in a section, complete it and add to sections list
+            sections.add(sectionContent.toString().trim());
+            sectionContent.setLength(0); // Reset for the next section
+          }
 
-  static class SectionVisitor extends AbstractVisitor {
-
-    private final List<String> sections = new ArrayList<>();
-    private final TextContentRenderer renderer = TextContentRenderer.builder().build();
-    private boolean insideSection = false;
-    private final StringBuilder currentSection = new StringBuilder();
-
-    @Override
-    public void visit(Heading heading) {
-      if (heading.getLevel() == 3) {
-        if (insideSection) {
-          sections.add(currentSection.toString().trim());
-          currentSection.setLength(0);
+          // Start a new section with the heading text
+          inHeadingSection = true;
+          StringBuilder headingText = new StringBuilder();
+          Node child = heading.getFirstChild();
+          while (child != null) {
+            if (child instanceof Text) {
+              headingText.append(((Text) child).getLiteral());
+            }
+            child = child.getNext();
+          }
+          sectionContent.append("### ").append(headingText.toString()).append("\n");
+        } else if (heading.getLevel() > 3 && inHeadingSection) {
+          // Finish the current section if we hit a non-level-3 heading
+          sections.add(sectionContent.toString().trim());
+          sectionContent.setLength(0);
+          inHeadingSection = false;
         }
-        insideSection = true;
       }
-      currentSection.append(renderer.render(heading));
-    }
 
-    @Override
-    public void visit(BulletList bulletList) {
-      currentSection.append(renderer.render(bulletList));
-    }
-
-    public List<String> getSections() {
-      if (insideSection && !currentSection.isEmpty()) {
-        sections.add(currentSection.toString().trim());
+      @Override
+      public void visit(Paragraph paragraph) {
+        if (inHeadingSection) {
+          Node child = paragraph.getFirstChild();
+          while (child != null) {
+            if (child instanceof Text) {
+              sectionContent.append(((Text) child).getLiteral()).append("\n");
+            }
+            child = child.getNext();
+          }
+        }
       }
-      return sections;
-    }
+
+      @Override
+      public void visit(BulletList bulletList) {
+        if (inHeadingSection) {
+          sectionContent.append("- ");
+          Node child = bulletList.getFirstChild();
+          while (child != null) {
+            if (child instanceof Text) {
+              sectionContent.append(((Text) child).getLiteral()).append("\n");
+            }
+            child = child.getNext();
+          }
+        }
+      }
+
+      @Override
+      public void visit(ThematicBreak thematicBreak) {
+        // End the section if a horizontal line or other non-text block is encountered
+        if (inHeadingSection) {
+          sections.add(sectionContent.toString().trim());
+          sectionContent.setLength(0);
+          inHeadingSection = false;
+        }
+      }
+
+      @Override
+      public void visit(BlockQuote blockQuote) {
+        if (inHeadingSection) {
+          sectionContent.append("> ");
+          Node child = blockQuote.getFirstChild();
+          while (child != null) {
+            if (child instanceof Text) {
+              sectionContent.append(((Text) child).getLiteral()).append("\n");
+            }
+            child = child.getNext();
+          }
+        }
+      }
+
+      @Override
+      public void visit(Document document) {
+        // When done traversing, ensure the last section gets added
+        super.visit(document);
+        if (inHeadingSection && !sectionContent.isEmpty()) {
+          sections.add(sectionContent.toString().trim());
+        }
+      }
+    });
+
+    return sections;
   }
 }
