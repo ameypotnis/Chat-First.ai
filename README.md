@@ -1,5 +1,5 @@
 # chat-first.ai
-##### Open source wiki based chatbot 
+##### Open source wiki based local first chatbot 
 ##### I ❤️ questions.
 
 # Index
@@ -17,7 +17,9 @@
 12. [Technical Issues/Support](#technical-issuessupport)
 
 ### [Overview](#overview)
-Welcome to chat-first.ai! This open-source(free to use) project aims to enhance workplace efficiency by creating an easily accessible knowledge base for common employee questions. The goal is to minimize repetitive inquiries to you by creating knowledge base for frequently asked questions and their answers in a centralized office machine in the form of wiki page sections, which can be accessed via a **simple chatbot interface for answering asked questions**.
+Welcome to chat-first.ai! This open-source (free to use) project aims to enhance workplace efficiency by creating an easily accessible knowledge base for common employee questions. The goal is to minimize repetitive inquiries to you by creating knowledge base for frequently asked questions and their answers on one of the office machine in the form of wiki page sections, which can be accessed via a **simple chatbot interface for answering asked questions by employees**.
+
+To run LLM (AI) locally, you'll need a computer with good specs. If you're planning to set it up to work without internet, please check the Minimum System Requirements section. 
 
 ### [How It Works](#how-it-works)
 1. **Creating Wiki Pages**:
@@ -41,7 +43,7 @@ It's useful for Chartered Accountant, Company Secretary, Small Business etc.
 ### [Mode Of Use](#mode-of-use)
 1. **Local LLM(AI) (Local Mode)**:
 - All applications wiki pages, databases, and LLM(AI) runs locally.
-- You may run it by keeping your server machine disconnected from internet, once basic setup is done
+- **We recommend to run it by keeping your server (machine) disconnected from internet, once basic setup is done**
 - This setup prioritizes privacy and security, safeguarding your sensitive information within your own network.
 2. **Use Online LLM(AI) Service (Online Mode)**:
 - To provide accurate and contextual answers, the application utilizes an online Large Language Model (AI) service.
@@ -59,7 +61,7 @@ If you have Mac or Linux with minimum 24GB RAM Deepseek r1 distilled model or Mi
 ### [AI Usage is an Iterative Journey](#ai-usage-is-also-iterativetrail-to-perfection-journey)
 Like any other field, creating a comprehensive and useful office wiki is an ongoing and iterative process. Here’s how you can refine your wiki to best meet the needs of you and employees:
 1. **Trial and Error in Writing Pages**:
-- Begin by drafting wiki pages based on common questions and essential information with the help of chatgpt or your preffered online gpt.
+- Begin by drafting wiki pages based on common questions and essential information with the help of chatgpt, gemini, mistral or your preferred online gpt.
 - Don’t worry about perfection in the initial stages; initial drafts can always be refined later.
 - Encourage feedback and incorporate improvements iteratively to enhance clarity and comprehensiveness.
 2. **Trial and Error in Questioning**:
@@ -77,10 +79,11 @@ To successfully run and leverage AI capabilities locally, it's important to have
     - 256GB or more SSD hard disk
 2. **Performance Considerations**:
 - Be aware that as more users access the system concurrently, you may experience a decrease in performance. The system's ability to handle multiple requests efficiently will depend on the hardware's capacity and machine processing power.
-3. **Our Recommendations**:
-- For optimal performance, consider using the latest Mac Mini with *at least* 16GB of RAM.
-- Alternatively, a Linux-based server is recommended over Windows, as Linux is often more efficient for handling server-based applications and processes.
-  By aligning your setup with these recommendations, you can ensure a smoother operation of the AI features and accommodate multiple users as effectively as possible.
+3. **Our System Recommendations**:
+- For optimal performance, consider using the latest M4 Mac Mini with *at least* 16GB of RAM.
+- Alternatively, a Linux-based machine is recommended over Windows, as Linux is often more efficient for handling applications and processes.
+- 
+  By aligning your setup with these recommendations, you can ensure a smoother operation of the AI features.
 
 ### [Minimum System Requirements and Recommendations for Online LLM (AI)](#minimum-system-requirements-and-recommendations-for-online-llm-ai)
 1. **Minimum System Requirements**:
