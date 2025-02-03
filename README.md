@@ -1,11 +1,11 @@
 # chat-first.ai
 ##### Open source wiki based local first chatbot 
-##### I ❤️ questions.
+##### I ❤️ repeat questions.
 
 # Index
 1. [Overview](#overview)
-2. [How It Works](#how-it-works)
-3. [Who Is It For?](#who-is-it-for)
+2. [Who Is It For?](#who-is-it-for)
+3. [How It Works](#how-it-works)
 4. [Mode Of Use](#mode-of-use)
 5. [We Recommend Using Online Mode for Evaluation](#we-recommend-using-online-mode-for-evaluation)
 6. [AI Usage is an Iterative Journey](#ai-usage-is-also-iterativetrail-to-perfection-journey)
@@ -21,6 +21,13 @@ Welcome to chat-first.ai! This open-source (free to use) project aims to enhance
 
 To run LLM (AI) locally, you'll need a computer with good specs. If you're planning to set it up to work without internet, please check the Minimum System Requirements section. 
 
+### [Who Is It For?](#who-is-it-for)
+The chat-first.ai is designed specifically for small offices and businesses. This set of tools is perfect for organizations where team members regularly refer to established guidelines, checklists, and procedures. By centralizing this information and integrating it with an AI-driven chatbot, you can ask employees to ask questions to chatbot first to save your time and ensure your team always has the information they need.
+
+It's useful for Chartered Accountant, Company Secretary, Small Business and Offices.
+
+Look at Demo Page - [DEMO](./docs/demo.md)
+
 ### [How It Works](#how-it-works)
 1. **Creating Wiki Pages**:
 - Develop comprehensive wiki pages on the various topics and store them as a wiki pages on an office machine (server).
@@ -35,11 +42,6 @@ To run LLM (AI) locally, you'll need a computer with good specs. If you're plann
 - The AI uses this information to generate an accurate and helpful response.
 - The response is sent back to the employee via the chatbot.
 
-### [Who Is It For?](#who-is-it-for)
-The chat-first.ai is designed specifically for small offices and businesses. This set of tools is perfect for organizations where team members regularly refer to established guidelines, checklists, and procedures. By centralizing this information and integrating it with an AI-driven chatbot, you can ask employees to ask questions to chatbot first to save your time and ensure your team always has the information they need.
-
-It's useful for Chartered Accountant, Company Secretary, Small Business etc.
-
 ### [Mode Of Use](#mode-of-use)
 1. **Local LLM(AI) (Local Mode)**:
 - All applications wiki pages, databases, and LLM(AI) runs locally.
@@ -52,14 +54,16 @@ It's useful for Chartered Accountant, Company Secretary, Small Business etc.
 - Only the necessary information related to asked question is shared, ensuring efficient and focused use of the online service to provide quick and precise responses with cost savings.
 
 ### [We Recommend Using Online Mode for Evaluation](#we-recommend-using-online-mode-for-evaluation)
-We recommend starting with the online LLM service approach to assess the fittment of the application for your needs. Use the pay-as-you-go online LLM services, such as Mistral or OpenAI, with feeding non-sensitive data. This allows you to evaluate the application's effectiveness without the upfront cost of investing in hardware. (Local LLM needs hardware investment to run smoothly for multiple users).
+We recommend starting with the online LLM service approach to assess the fitment of the application for your needs. Use the pay-as-you-go online LLM services, such as Mistral or OpenAI, with feeding non-sensitive data. This allows you to evaluate the application's effectiveness without the upfront cost of investing in hardware. (Local LLM needs hardware investment to run smoothly for multiple users).
 
 Online LLM services are cost-effective, requiring no initial setup investments. If you find that the application meets your requirements, you can consider investing in the necessary hardware to run the LLM locally later on.
 
-If you have Mac or Linux with minimum 24GB RAM Deepseek r1 distilled model or Mistral LLM works locally
+If you have Mac or Linux with minimum 24GB RAM Deepseek r1 distilled model or Mistral LLM works smooth locally
 
 ### [AI Usage is an Iterative Journey](#ai-usage-is-also-iterativetrail-to-perfection-journey)
-Like any other field, creating a comprehensive and useful office wiki is an ongoing and iterative process. Here’s how you can refine your wiki to best meet the needs of you and employees:
+Like any other field, creating a comprehensive and useful office wiki is an ongoing and iterative process. Starting early adaption of AI technologies give you more time to make it workable. 
+
+Here’s how you can refine your wiki to best meet the needs of you and employees:
 1. **Trial and Error in Writing Pages**:
 - Begin by drafting wiki pages based on common questions and essential information with the help of chatgpt, gemini, mistral or your preferred online gpt.
 - Don’t worry about perfection in the initial stages; initial drafts can always be refined later.
@@ -93,7 +97,6 @@ To successfully run and leverage AI capabilities locally, it's important to have
     - 256GB or more SSD hard disk
 
 ## [Acknowledgements](#acknowledgements)
-This project depends on/uses following open-source projects
 chat-first.ai builds on top of other open-source projects:
 1. [Wiki.js](https://wiki.js.org/) - Wiki.js is a modern and powerful wiki app built on Node.js, Git, and Markdown.
 2. [Mozilla llamafile](https://github.com/Mozilla-Ocho/llamafile) - Run LLMs AI system run with a single file, no dependencies, and no setup. no internet connection required.

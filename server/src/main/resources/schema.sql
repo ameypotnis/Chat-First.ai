@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public.page_embeddings
     mistral_embeddings vector(1024),
     page_id            integer
         constraint page_embeddings_pages_id_fk
-            references public.pages
+            references public.pages on delete cascade
 );
 
 CREATE INDEX IF NOT EXISTS page_embeddings_local_embeddings_idx

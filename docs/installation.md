@@ -1,19 +1,11 @@
-# Chat-First.ai
-##### I ❤️ questions
-
-## System Requirements
-To run AI (Mistral 7B Mozilla LlamaFile) locally on your office machine, the minimal hardware requirements are:
-CPU: Modern multi-core processor (e.g., Intel i7 or AMD Ryzen 7)
-RAM: At least 16 GB
-GPU: Good to have NVIDIA GPU with at least 16 GB VRAM (e.g., A100 or RTX 3090)
-Storage: 100 GB+ SSD for model and data storage
-These specs are for running the model efficiently; less powerful setups might work but with limited performance.
+# chat-first.ai
 
 ## Installation
 
 ### Prerequisites
-- Ensure you have Docker installed on your common machine on intranet.
-- Follow the steps below based on your operating system.
+- Please check the minimum system requirements before starting installation.
+- Recommended to use spare machine as a server without important data on it before starting installation. 
+- Follow the steps below based on your operating system to install docker.
 
 #### Windows
 1. Download Docker Desktop from the [Docker website](https://www.docker.com/products/docker-desktop).
@@ -21,7 +13,7 @@ These specs are for running the model efficiently; less powerful setups might wo
 3. Once installed, open Docker Desktop to start Docker services.
 
 #### Linux
-1. Open your terminal.
+1. Open your terminal.[demo.md](demo.md)
 2. Run the following commands:
    ```
    sudo apt-get update
@@ -37,7 +29,7 @@ These specs are for running the model efficiently; less powerful setups might wo
 2. Open the downloaded `.dmg` file and drag Docker to your Applications folder.
 3. Launch Docker Desktop to initiate Docker services.
 
-### Running local AI (Windows)
+### Running local AI
 This guide will walk you through setting up and running AI systems on your Windows computer.
 
 1. Downloading the AI Systems
@@ -49,10 +41,11 @@ Click on the following link to download the first AI system:
 
 Note: These links will download files. By default, your web browser will ask where to save the files. Choose a location that you can easily remember, such as your Downloads folder.
 
-3. Renaming the Downloaded Files
+#### On Windows
+1. Renaming the Downloaded Files
 Once you have downloaded both files, you'll need to rename them slightly. Find the downloaded files and add ".exe" to the end of each filename. For example, if a file is named "mistral-7b-instruct-v0.2.Q4_0.llamafile", rename it to "mistral-7b-instruct-v0.2.Q4_0.llamafile.exe".
 
-4. Running the AI Systems
+2. Running the AI Systems
 Open a program called "Command Prompt". You can search for it using the Start menu search bar.
 In the command prompt window, type the following command and press Enter:
 ```
@@ -64,7 +57,42 @@ keep it running as is.
 ```
 mxbai-embed-large-v1-f16.llamafile.exe --server --nobrowser --port 8081
 ```
-Congratulations! You have successfully run the AI systems on your computer, keep them in running mode.
 
-### Running Chat-First.ai with Docker Compose
-1. TODO
+#### On Mac/Linux
+1. Running the AI Systems
+   Open a Terminal and make downloaded file executable:
+```
+chmod u=rwx mistral-7b-instruct-v0.2.Q4_0.llamafile 
+./mistral-7b-instruct-v0.2.Q4_0.llamafile --server --nobrowser --port 8080
+```
+keep it running as is.
+
+5. Then, open new terminal and execute the following commands:
+```
+chmod u=rwx mxbai-embed-large-v1-f16.llamafile
+mxbai-embed-large-v1-f16.llamafile --server --nobrowser --port 8081
+```
+
+Congratulations! You have successfully run the LLM (AI) systems on the server, keep them in running mode.
+
+### Running chat-first.ai, Wiki.js and database with Docker
+Follow these simple steps to set up the application using Docker Compose:
+1. **Access the GitHub Repository**:
+- Visit the GitHub page where the project's files are stored.
+2. **Find the `compose.yml` File**:
+- Look for a file named `compose.yml` on the GitHub repository. It might also be named `docker-compose.yml`.
+3. **Copy the `compose.yml` File**:
+- Open the `compose.yml` file by clicking on it.
+- Once it’s open, select all the text within the file.
+- Copy the selected text (you can usually do this by right-clicking and selecting "Copy" or using a shortcut like `Ctrl+C` on Windows or `Cmd+C` on Mac).
+4. **Create a Local `compose.yml` File**:
+- On your computer, open a text editor (like Notepad on Windows or TextEdit on Mac).
+- Paste the copied text into the text editor (you can do this by right-clicking and selecting "Paste" or using a shortcut like `Ctrl+V` on Windows or `Cmd+V` on Mac).
+- Save the file as `compose.yml` in a folder where you want to set up the application.
+5. **Run Docker Compose**:
+- Open a terminal or command prompt on your computer.
+- Navigate to the folder where you saved the `compose.yml` file. You can do this by typing commands like `cd foldername` to change directories.
+- Once you're in the correct folder, type `docker-compose up` and press Enter.
+  These steps will start the application using Docker Compose, getting everything set up according to the instructions in the `compose.yml` file. 
+
+First time it will take some time to download all applications and getting ready (Internet required till this step).
