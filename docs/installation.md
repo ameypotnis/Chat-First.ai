@@ -96,3 +96,27 @@ Follow these simple steps to set up the application using Docker Compose:
   These steps will start the application using Docker Compose, getting everything set up according to the instructions in the `compose.yml` file. 
 
 First time it will take some time to download all applications and getting ready (Internet required till this step).
+
+## Environment Variables Setup for Online Service Usage
+
+To properly configure the application for using an online AI system, you need to set the following environment variables. These variables will allow the application to connect with the AI API services (such as OpenAI or Mistral) securely.
+
+### Required Environment Variables
+
+| Variable Name                 | Description                                                       | Example Value                          |
+|-------------------------------|-------------------------------------------------------------------|----------------------------------------|
+| `OPENAI_API_URL`              | Base URL for the OpenAI API                                        | `https://api.openai.com/v1`            |
+| `OPENAI_API_TOKEN`            | Authorization token for accessing the OpenAI API                  | `your-openai-api-token`                |
+| `OPENAI_EMBEDDING_API_URL`    | URL endpoint for OpenAI embedding generation API                  | `https://api.openai.com/v1/embeddings` |
+| `MISTRAL_API_TOKEN`           | Authorization token for accessing the Mistral API                 | `your-mistral-api-token`               |
+
+### Steps to Set Environment Variables in docker compose.yml file 
+```
+services:
+    app:
+        environment:
+        - OPENAI_API_URL=https://api.openai.com/v1
+        - OPENAI_API_TOKEN=your-openai-api-token
+        - OPENAI_EMBEDDING_API_URL=https://api.openai.com/v1/embeddings
+        - MISTRAL_API_TOKEN=your-mistral-api-token
+```
