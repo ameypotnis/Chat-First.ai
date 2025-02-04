@@ -13,8 +13,9 @@
 8. [Minimum System Requirements and Recommendations for Online LLM (AI)](#minimum-system-requirements-and-recommendations-for-online-llm-ai)
 9. [Acknowledgements](#acknowledgements)
 10. [How To Install](#how-to-install)
-11. [License](#license)
-12. [Technical Issues/Support](#technical-issuessupport)
+11. [Can I Get Installation/Demo and AI training Support](#support-to-install)
+12. [License](#license)
+13. [Technical Issues/Support](#technical-issuessupport)
 
 ### [Overview](#overview)
 Welcome to chat-first.ai! This open-source (free to use) project aims to enhance workplace efficiency by creating an easily accessible knowledge base for common employee questions. The goal is to minimize repetitive inquiries to you by creating knowledge base for frequently asked questions and their answers on one of the office machine in the form of wiki page sections, which can be accessed via a **simple chatbot interface for answering asked questions by employees**.
@@ -107,6 +108,9 @@ chat-first.ai builds on top of other open-source projects:
 
 ## [How To Install](#how-to-install)
 [Installation Guide](docs/installation.md)
+
+## [Can I Get Installation/Demo and AI training Support](#support-to-install)
+I'd love to enable you. Please fill out the chat-first.ai [paid training and installation request form](https://forms.gle/UWdV9HhCgN3V76z98), and I'll get back to you as soon as we can.
 
 ## [License](#license)
 This project is licensed under the AGPL License as stated in the [LICENSE file](https://github.com/ameypotnis/chat-first.ai/blob/main/LICENSE).
