@@ -77,25 +77,17 @@ Congratulations! You have successfully run the LLM (AI) systems on the server, k
 
 ### Running chat-first.ai, Wiki.js and database with Docker
 Follow these simple steps to set up the application using Docker Compose:
-1. **Access the GitHub Repository**:
-- Visit the GitHub page where the project's files are stored.
-2. **Find the `compose.yml` File**:
-- Look for a file named `compose.yml` on the GitHub repository. It might also be named `docker-compose.yml`.
-3. **Copy the `compose.yml` File**:
-- Open the `compose.yml` file by clicking on it.
-- Once it’s open, select all the text within the file.
-- Copy the selected text (you can usually do this by right-clicking and selecting "Copy" or using a shortcut like `Ctrl+C` on Windows or `Cmd+C` on Mac).
-4. **Create a Local `compose.yml` File**:
-- On your computer, open a text editor (like Notepad on Windows or TextEdit on Mac).
-- Paste the copied text into the text editor (you can do this by right-clicking and selecting "Paste" or using a shortcut like `Ctrl+V` on Windows or `Cmd+V` on Mac).
-- Save the file as `compose.yml` in a folder where you want to set up the application.
-5. **Run Docker Compose**:
+1. **Copy the `local-compose.yml` File from GitHub**:
+- create `compose.yml` file on local machine and copy contains from [local-compose.yaml](https://raw.githubusercontent.com/ameypotnis/Chat-First.ai/refs/heads/develop/docs/local-compose.yaml) file
+- change chat-first-ai-app version to latest version `chat-first-ai-app:{version}` from 7 to latest version number. you can find latest version number [here](https://github.com/ameypotnis/Chat-First.ai/actions?query=branch%3Amain)
+2. **Run Docker Compose**:
 - Open a terminal or command prompt on your computer.
 - Navigate to the folder where you saved the `compose.yml` file. You can do this by typing commands like `cd foldername` to change directories.
-- Once you're in the correct folder, type `docker-compose up` and press Enter.
-  These steps will start the application using Docker Compose, getting everything set up according to the instructions in the `compose.yml` file. 
+- Once you're in the correct folder, type `docker-compose -f compose.yaml up` and press Enter.
+  These steps will download required software and start the application using Docker Compose, getting everything set up according to the instructions in the `compose.yml` file. 
 
 First time it will take some time to download all applications and getting ready (Internet required till this step).
+Now you can disconnect from internet and if everything set up correctly you access local [wiki](http://localhost:11478/) and [chat-first.ai](http://localhost:11480)
 
 ## Environment Variables Setup for Online Service Usage
 
