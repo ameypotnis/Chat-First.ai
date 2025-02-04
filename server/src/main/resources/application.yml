@@ -42,7 +42,7 @@ server:
   port: 11480
 
 wiki:
-  url: ${WIKI_URL:localhost}
+  url: ${WIKI_URL:localhost:11478}
   name: ${COMPANY_NAME:}
 
 online:
