@@ -5,7 +5,7 @@ spring:
     init:
       mode: always
   datasource:
-    url: jdbc:postgresql://localhost:11479/wikijs
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:11479}/wikijs
     username: wikijsuser
     password: ${DB_PASSWORD:s3cUr3P@ssw0rd!}
     hikari:

@@ -77,3 +77,16 @@ jobs:
         name: server-build
         path: ./server/build/libs/
 
+      # Build Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-first-ai-app:${{ github.run_number }} ./server
+
+      # Log in to Docker Hub
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # Push Docker image to Docker Hub
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/chat-first-ai-app:${{ github.run_number }}
