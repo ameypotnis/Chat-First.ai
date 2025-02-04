@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: chat-first-ai
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:11479}/wikijs
+    username: wikijsuser
+    password: ${DB_PASSWORD:s3cUr3P@ssw0rd!}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  ai:
+    openai:
+      # default to local llamafile mistral
+      base-url: ${OPENAI_API_URL:http://localhost:8080}
+      api-key: ${OPENAI_API_TOKEN:no-token}
+      embedding:
+        # default to local llamafile embedding
+        base-url: ${OPENAI_EMBEDDING_API_URL:http://localhost:8081}
+        api-key: ${OPENAI_API_TOKEN:no-token}
+        enabled: true
+        options:
+          model: mxbai-embed-large
+    mistralai:
+      base-url: https://api.mistral.ai
+      embedding:
+        base-url: https://api.mistral.ai
+        api-key: ${MISTRAL_API_TOKEN:no-token}
+        enabled: true
+      api-key: ${MISTRAL_API_TOKEN:no-token}
+
+server:
+  port: 11480
+
+wiki:
+  url: ${WIKI_URL:localhost:11478}
+  name: ${COMPANY_NAME:}
+
+online:
+  enabled: ${ONLINE_ACCESS:false}
