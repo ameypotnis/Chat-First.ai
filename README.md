@@ -27,7 +27,16 @@ The chat-first.ai is designed specifically for small offices and businesses. Thi
 
 It's useful for Chartered Accountant, Company Secretary, Small Business and Offices.
 
-Look at Demo Page - [DEMO](./docs/demo.md)
+Sample wiki
+
+![wiki example1 screenshot](./docs/wiki-example1.png)
+
+Sample Q&A
+
+![chat example1 screenshot](./docs/chat-first-example2.gif)
+
+
+Look at more demos - [DEMO](./docs/demo.md)
 
 ### [How It Works](#how-it-works)
 1. **Creating Wiki Pages**:
