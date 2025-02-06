@@ -27,16 +27,15 @@ The chat-first.ai is designed specifically for small offices and businesses. Thi
 
 It's useful for Chartered Accountant, Company Secretary, Small Business and Offices.
 
-Sample wiki
+Watch create wiki page video
+[![Watch the video](./docs/wiki-cover-page.png)](https://youtu.be/tvOwYM7ejhs)
 
-![wiki example1 screenshot](./docs/wiki-example1.png)
+Watch Q&A video 
 
-Sample Q&A
-
-![chat example1 screenshot](./docs/chat-first-example2.gif)
+[![Watch the video](./docs/qna-cover-page.png)](https://youtu.be/tvOwYM7ejhs)
 
 
-Look at more demos - [DEMO](./docs/demo.md)
+More demos available at - [DEMO](./docs/demo.md)
 
 ### [How It Works](#how-it-works)
 1. **Creating Wiki Pages**:
