@@ -2,6 +2,11 @@
 ##### Open source wiki based local first chatbot 
 ##### I ❤️ repeat questions.
 
+[![chat-first.ai](https://github.com/ameypotnis/Chat-First.ai/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ameypotnis/Chat-First.ai/actions/workflows/build.yml)
+[![Discord](https://img.shields.io/discord/1337289749685080146.svg?label=Chat%20On%20Discord&logo=discord&color=7289da)](https://discord.gg/UsWR775M)
+
+**Note: Please do not share secrets, passwords, tokens or any key on Discord**
+
 # Index
 1. [Overview](#overview)
 2. [Who Is It For?](#who-is-it-for)
@@ -32,7 +37,7 @@ Watch create wiki page video
 
 Watch Q&A video 
 
-[![Watch the video](./docs/qna-cover-page.png)](https://youtu.be/tvOwYM7ejhs)
+[![Watch the video](./docs/qna-cover-page.png)](https://youtu.be/3fGALjGhom0)
 
 
 More demos available at - [DEMO](./docs/demo.md)
@@ -54,7 +59,7 @@ More demos available at - [DEMO](./docs/demo.md)
 ### [Mode Of Use](#mode-of-use)
 1. **Local LLM(AI) (Local Mode)**:
 - All applications wiki pages, databases, and LLM(AI) runs locally.
-- **We recommend to run it by keeping your server (machine) disconnected from internet, once basic setup is done**
+- We recommend to run it by keeping your server (machine) disconnected from internet, once basic setup is done or use of firewall for out network
 - This setup prioritizes privacy and security, safeguarding your sensitive information within your own network.
 2. **Use Online LLM(AI) Service (Online Mode)**:
 - To provide accurate and contextual answers, the application utilizes an online Large Language Model (AI) service.
@@ -118,7 +123,11 @@ chat-first.ai builds on top of other open-source projects:
 [Installation Guide](docs/installation.md)
 
 ## [Can I Get Installation/Demo and AI training Support](#support-to-install)
-I'd love to enable you. Please fill out the chat-first.ai [paid training and installation request form](https://forms.gle/UWdV9HhCgN3V76z98), and I'll get back to you as soon as we can.
+If you need chat assistance with installing **Chat-First.ai**, feel free to join our [Discord Server](https://discord.gg/UsWR775M) and visit the `#installation-help` channel.
+Someone will assist you with any installation issues, or general installation guidance.
+
+If you are looking for complete setup, how to use guidance and LLM(AI) training for your staff, I'd love to enable you.
+Please fill out the chat-first.ai [paid training and installation request form](https://forms.gle/UWdV9HhCgN3V76z98), and I'll get back to you as soon as we can.
 
 ## [License](#license)
 This project is licensed under the AGPL License as stated in the [LICENSE file](https://github.com/ameypotnis/chat-first.ai/blob/main/LICENSE).
