@@ -3,6 +3,11 @@
 ### Some screenshot of wiki with question and answers
 **Please Note: Currently, Wiki only support headline 3 (###) section with no special markdown characters in the content**
 
+This app tries to solve common conversation problem like this in the small offices
+
+![Repeat questions](./promo1.png)
+
+
 1. Wiki example 1
 
    ![wiki example1 screenshot](./wiki-example1.png)
