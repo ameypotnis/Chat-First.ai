@@ -51,14 +51,14 @@
             Open Source Code
           </v-btn>
           <v-btn
-            href="https://whatsapp.com/channel/0029Vb2y0wBLNSa2YvyHEM1n"
+            href="https://discord.com/invite/UsWR775M"
             target="_blank"
             variant="text"
             class="text-body-2"
-            prepend-icon="mdi-whatsapp"
+            prepend-icon="mdi-discord"
             color="green-darken-1"
           >
-            WhatsApp Channel
+            Discord Chat
           </v-btn>
 
         </div>
