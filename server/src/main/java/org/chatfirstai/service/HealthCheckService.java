@@ -14,11 +14,17 @@ public class HealthCheckService {
   private final Environment environment;
   private final EmbeddingService embeddingService;
   private final RestTemplate restTemplate;
+  private final JanAiService janAiService;
 
-  public HealthCheckService(Environment environment, EmbeddingService embeddingService) {
+  public HealthCheckService(
+      Environment environment,
+      EmbeddingService embeddingService,
+      RestTemplate restTemplate,
+      JanAiService janAiService) {
     this.environment = environment;
       this.embeddingService = embeddingService;
-      this.restTemplate = new RestTemplate();
+    this.restTemplate = restTemplate;
+    this.janAiService = janAiService;
   }
 
   private String maskKey(String key) {

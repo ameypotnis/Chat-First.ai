@@ -47,3 +47,7 @@ wiki:
 
 online:
   enabled: ${ONLINE_ACCESS:false}
+
+jan-ai:
+  base-url: http://127.0.0.1:1337
+  model: deepseek-r1-distill-llama-8b
