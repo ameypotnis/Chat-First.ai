@@ -49,5 +49,6 @@ online:
   enabled: ${ONLINE_ACCESS:false}
 
 jan-ai:
+  enabled: ${JANAI_ACCESS:false}
   base-url: http://127.0.0.1:1337
   model: deepseek-r1-distill-llama-8b

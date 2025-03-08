@@ -1,6 +1,7 @@
 package org.chatfirstai.service;
 
 import java.util.List;
+import java.util.Map;
 import org.chatfirstai.data.JanAiChatRequest;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class JanAiService {
         new JanAiChatRequest(messages, environment.getProperty("jan-ai.model"));
     String apiUrl =
         String.format("%s%s", environment.getProperty("jan-ai.base-url"), "/v1/chat/completions");
-    return restTemplate.postForObject(apiUrl, request, String.class);
+    Map jsonMap = restTemplate.postForObject(apiUrl, request, Map.class);
+    Map message = ((Map) ((Map) ((List) jsonMap.get("choices")).getFirst()).get("message"));
+    return (String) message.get("content");
   }
 }

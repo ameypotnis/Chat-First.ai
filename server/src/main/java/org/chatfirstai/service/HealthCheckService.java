@@ -38,6 +38,10 @@ public class HealthCheckService {
     return "true".equalsIgnoreCase(environment.getProperty("online.enabled"));
   }
 
+  public boolean isJanAiEnabled() {
+    return "true".equalsIgnoreCase(environment.getProperty("jan-ai.enabled"));
+  }
+
   public AIServiceStatus healthCheck() {
     String openAiKey = maskKey(environment.getProperty("spring.ai.openai.api-key"));
     String mistralKey =maskKey(environment.getProperty("spring.ai.mistralai.api-key"));

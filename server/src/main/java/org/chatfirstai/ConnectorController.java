@@ -9,6 +9,7 @@ import org.chatfirstai.service.PromptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,6 +68,12 @@ public class ConnectorController {
   @GetMapping("/env")
   public HealthCheckService.AIServiceStatus getEnv() {
     return healthCheckService.healthCheck();
+  }
+
+  @Scheduled(cron = "0 0/10 * * * ?")
+  public void performEmbedding() {
+    log.info("Scheduled task executed at: {}", System.currentTimeMillis());
+    generateEmbeddings();
   }
 
   public record AskDto(String message, String model) {}
